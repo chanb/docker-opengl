@@ -1,7 +1,7 @@
 #!/bin/bash
 
 container=opengl
-image=thewtex/opengl
+image=ikeyasu/opengl
 port=6080
 extra_run_args=""
 quiet=""
@@ -11,7 +11,7 @@ cat << EOF
 Usage: ${0##*/} [-h] [-q] [-c CONTAINER] [-i IMAGE] [-p PORT] [-r DOCKER_RUN_FLAGS]
 
 This script is a convenience script to run Docker images based on
-thewtex/opengl. It:
+ikeyasu/opengl. It:
 
 - Makes sure docker is available
 - On Windows and Mac OSX, creates a docker machine if required

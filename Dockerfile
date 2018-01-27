@@ -1,7 +1,5 @@
-FROM dockcross/base:latest
-MAINTAINER Matt McCormick <matt.mccormick@kitware.com>
-
-ENV DEFAULT_DOCKCROSS_IMAGE thewtex/opengl
+FROM ubuntu:16.04
+MAINTAINER ikeyasu <ikeyasu@gmail.com>
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git \
@@ -18,7 +16,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   xinit \
   xserver-xorg-video-dummy \
   xserver-xorg-input-void \
-  websockify && \
+  websockify \
+  wget && \
   rm -f /usr/share/applications/x11vnc.desktop && \
   apt-get remove -y python-pip && \
   wget https://bootstrap.pypa.io/get-pip.py && \
@@ -60,7 +59,7 @@ ARG VCS_REF
 ARG VCS_URL
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name=$IMAGE \
-      org.label-schema.description="An image based on debian/jessie containing an X_Window_System which supports rendering graphical applications, including OpenGL apps" \
+      org.label-schema.description="An image based on Ubuntu 16.04 containing an X_Window_System which supports rendering graphical applications, including OpenGL apps" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url=$VCS_URL \
       org.label-schema.schema-version="1.0"

@@ -2,12 +2,6 @@ docker-opengl
 =============
 A docker image that supports rendering graphical applications, including OpenGL apps.
 
-.. image:: https://circleci.com/gh/thewtex/docker-opengl.svg?style=svg
-    :target: https://circleci.com/gh/thewtex/docker-opengl
-
-.. image:: https://images.microbadger.com/badges/image/thewtex/opengl.svg
-  :target: https://microbadger.com/images/thewtex/opengl
-
 Overview
 --------
 
@@ -17,6 +11,8 @@ running on display `:0` and can be viewed through HTML5 viewer on any device
 with a modern web browser (Mac OSX, Windows, Linux, Android, iOS, ChromeOS,
 ...). It can be used to expose a graphical interface from a Docker container
 or to run continuous integration tests that require a graphical environment.
+
+This docker image is forked from https://github.com/thewtex/docker-opengl
 
 Quick-start
 -----------
@@ -48,7 +44,7 @@ flags::
   Usage: run.sh [-h] [-q] [-c CONTAINER] [-i IMAGE] [-p PORT] [-r DOCKER_RUN_FLAGS]
 
   This script is a convenience script to run Docker images based on
-  thewtex/opengl. It:
+  ikeyasu/opengl. It:
 
   - Makes sure docker is available
   - On Windows and Mac OSX, creates a docker machine if required
@@ -62,7 +58,7 @@ flags::
 
     -h             Display this help and exit.
     -c             Container name to use (default opengl).
-    -i             Image name (default thewtex/opengl).
+    -i             Image name (default ikeyasu/opengl).
     -p             Port to expose HTTP server (default 6080). If an empty
                    string, the port is not exposed.
     -r             Extra arguments to pass to 'docker run'. E.g.
@@ -76,4 +72,5 @@ See the *example* directory for a derived image and `run.sh` script that runs th
 Credits
 -------
 
+This docker image is based on https://github.com/thewtex/docker-opengl .
 This configuration was largely inspired by the `dit4c project <https://dit4c.github.io>`_.

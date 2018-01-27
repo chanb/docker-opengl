@@ -1,11 +1,11 @@
 # Docker organization to pull the images from
-ORG = thewtex
+ORG = ikeyasu
 
 # Name of image
 IMAGE = opengl
 
 # Docker TAG
-TAG = debian
+TAG = ubuntu16.04
 
 build:
 	docker build \

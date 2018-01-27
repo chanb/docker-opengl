@@ -5,10 +5,10 @@ ORG = ikeyasu
 IMAGE = opengl
 
 # Docker TAG
-TAG = ubuntu16.04
+TAG = cuda8.0-cudnn5-devel-ubuntu16.04
 
 build:
-	docker build \
+	nvidia-docker build \
 		-t $(ORG)/$(IMAGE):$(TAG) \
 		--build-arg IMAGE=$(ORG)/$(IMAGE):$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
@@ -17,10 +17,10 @@ build:
 		.
 
 example:
-	docker build \
+	nvidia-docker build \
 		-t $(ORG)/$(IMAGE)-example:$(TAG) example/
 
 push:
-	docker push $(ORG)/$(IMAGE):$(TAG)
+	nvidia-docker push $(ORG)/$(IMAGE):$(TAG)
 
 .PHONY: build example push

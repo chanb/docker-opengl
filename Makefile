@@ -8,19 +8,20 @@ IMAGE = opengl
 TAG = cuda8.0-cudnn5-devel-ubuntu16.04
 
 build:
-	nvidia-docker build \
+	docker build --runtime=nvidia \
 		-t $(ORG)/$(IMAGE):$(TAG) \
 		--build-arg IMAGE=$(ORG)/$(IMAGE):$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+		--no-cache \
 		.
 
 example:
-	nvidia-docker build \
+	docker build --runtime=nvidia \
 		-t $(ORG)/$(IMAGE)-example:$(TAG) example/
 
 push:
-	nvidia-docker push $(ORG)/$(IMAGE):$(TAG)
+	docker push $(ORG)/$(IMAGE):$(TAG)
 
 .PHONY: build example push

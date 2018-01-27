@@ -68,7 +68,7 @@ while [ $# -gt 0 ]; do
 done
 
 
-which nvidia-docker 2>&1 >/dev/null
+which docker 2>&1 >/dev/null
 if [ $? -ne 0 ]; then
 	echo "Error: the 'docker' command was not found.  Please install docker."
 	exit 1
@@ -124,7 +124,8 @@ if [ -n "$port" ]; then
 	port_arg="-p $port:6080"
 fi
 
-nvidia-docker run \
+docker run \
+  --runtime=nvidia \
   -d \
   --name $container \
   ${mount_local} \

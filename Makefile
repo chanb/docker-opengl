@@ -8,7 +8,7 @@ IMAGE = opengl
 TAG = cuda8.0-cudnn5-devel-ubuntu16.04
 
 build:
-	docker build --runtime=nvidia \
+	docker build \
 		-t $(ORG)/$(IMAGE):$(TAG) \
 		--build-arg IMAGE=$(ORG)/$(IMAGE):$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 container=opengl
-image=ikeyasu/opengl
+image=ikeyasu/opengl:cuda9.0-cudnn7-devel-ubuntu16.04
 port=6080
 extra_run_args=""
 quiet=""

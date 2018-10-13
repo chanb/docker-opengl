@@ -38,7 +38,7 @@ RUN echo "user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/user
 RUN git clone https://github.com/kanaka/noVNC.git /opt/noVNC && \
   cd /opt/noVNC && \
   git checkout e91a095ad6751fdb9a7bd642ad9bc75afbdaac87 && \
-  ln -s vnc_auto.html index.html
+  ln -s vnc.html index.html
 
 # noVNC (http server) is on 6080, and the VNC server is on 5900
 EXPOSE 6080 5900

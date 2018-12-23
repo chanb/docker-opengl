@@ -21,6 +21,12 @@ Quick-start
 $ docker run --runtime=nvidia -it -p 6080:6080 ikeyasu/opengl:cuda9.0-cudnn7-devel-ubuntu16.04
 ```
 
+If you want to use password for VNC server, please specify VNC_PW environment variable.
+
+```
+$ docker run --runtime=nvidia -it -p 6080:6080 -e VNC_PW=your-password ikeyasu/opengl:cuda9.0-cudnn7-devel-ubuntu16.04
+```
+
 Credits
 -------
 

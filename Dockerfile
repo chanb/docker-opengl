@@ -47,6 +47,7 @@ COPY etc /etc
 COPY usr /usr
 
 ENV DISPLAY :0
+ENV VNC_PW ""
 
 WORKDIR /root
 

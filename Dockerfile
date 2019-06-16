@@ -1,29 +1,30 @@
 FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
 MAINTAINER ikeyasu <ikeyasu@gmail.com>
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git \
   libgl1-mesa-dri \
   menu \
   net-tools \
-  openbox \
-  python-pip \
+  blackbox \
+  python3-pip \
   sudo \
-  supervisor \
   tint2 \
   x11-xserver-utils \
   x11vnc \
   xinit \
   xserver-xorg-video-dummy \
-  xserver-xorg-input-void \
-  websockify \
-  wget && \
-  rm -f /usr/share/applications/x11vnc.desktop && \
-  apt-get remove -y python-pip && \
-  wget https://bootstrap.pypa.io/get-pip.py && \
-  python get-pip.py && \
-  pip install supervisor-stdout && \
-  apt-get -y clean
+  xserver-xorg-input-void
+
+RUN apt-get -y clean && \
+  rm -rf /var/lib/apt/lists/*
+
+RUN rm -f /usr/share/applications/x11vnc.desktop
+RUN pip3 install --upgrade pip
+RUN pip3 install websockify supervisor
+RUN mkdir -p /var/log/supervisor/
+
+RUN bash -c "ln -s $(which python3) /usr/bin/python && ln -s $(which pip3) /usr/bin/pip"
 
 COPY etc/skel/.xinitrc /etc/skel/.xinitrc
 
@@ -37,7 +38,7 @@ RUN echo "user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/user
 
 RUN git clone https://github.com/kanaka/noVNC.git /opt/noVNC && \
   cd /opt/noVNC && \
-  git checkout e91a095ad6751fdb9a7bd642ad9bc75afbdaac87 && \
+  git checkout v1.1.0 && \
   ln -s vnc.html index.html
 
 # noVNC (http server) is on 6080, and the VNC server is on 5900
@@ -51,7 +52,7 @@ ENV VNC_PW ""
 
 WORKDIR /root
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/usr/local/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE

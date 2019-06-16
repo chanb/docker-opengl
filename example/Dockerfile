@@ -1,4 +1,4 @@
-FROM ikeyasu/opengl:latest
+FROM ikeyasu/opengl:cuda9.0-cudnn7-devel-ubuntu16.04
 MAINTAINER ikeyasu <ikeyasu@gmail.com>
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \

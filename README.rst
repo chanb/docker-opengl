@@ -14,6 +14,12 @@ or to run continuous integration tests that require a graphical environment.
 
 This docker image is forked from https://github.com/thewtex/docker-opengl
 
+BUILD IMAGE
+-----------
+```
+docker build . -t novnc_base_image
+```
+
 Quick-start
 -----------
 

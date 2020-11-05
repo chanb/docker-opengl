@@ -1,5 +1,4 @@
-FROM ubuntu:16.04
-MAINTAINER ikeyasu <ikeyasu@gmail.com>
+FROM nvidia/cudagl:10.2-devel-ubuntu18.04
 
 RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git \
@@ -61,7 +60,7 @@ ARG VCS_REF
 ARG VCS_URL
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name=$IMAGE \
-      org.label-schema.description="An image based on Ubuntu 16.04 containing an X_Window_System which supports rendering graphical applications, including OpenGL apps" \
+      org.label-schema.description="An image based on Ubuntu 18.04 containing an X_Window_System which supports rendering graphical applications, including OpenGL apps" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url=$VCS_URL \
       org.label-schema.schema-version="1.0"

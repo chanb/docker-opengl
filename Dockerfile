@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM nvidia/cudagl:10.2-devel-ubuntu16.04
 MAINTAINER ikeyasu <ikeyasu@gmail.com>
 
 RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y \

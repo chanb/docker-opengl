@@ -20,7 +20,7 @@ RUN apt-get -y clean && \
   rm -rf /var/lib/apt/lists/*
 
 RUN rm -f /usr/share/applications/x11vnc.desktop
-RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip==20.0.2
 RUN pip3 install websockify supervisor
 RUN mkdir -p /var/log/supervisor/
 

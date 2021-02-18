@@ -1,13 +1,14 @@
 FROM nvidia/cudagl:10.2-devel-ubuntu16.04
-MAINTAINER ikeyasu <ikeyasu@gmail.com>
 
+RUN apt-get -y update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git \
   libgl1-mesa-dri \
   menu \
   net-tools \
   blackbox \
-  python3-pip \
+  python3.7 \
   sudo \
   tint2 \
   x11-xserver-utils \
@@ -16,11 +17,14 @@ RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   xserver-xorg-video-dummy \
   xserver-xorg-input-void
 
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 1
+RUN apt-get install -y python3-pip
 RUN apt-get -y clean && \
   rm -rf /var/lib/apt/lists/*
 
 RUN rm -f /usr/share/applications/x11vnc.desktop
-RUN pip3 install --upgrade pip==20.0.2
+RUN alias pip3=pip3.7 && alias python3=python3.7
+RUN pip3 install --upgrade pip
 RUN pip3 install websockify supervisor
 RUN mkdir -p /var/log/supervisor/
 
